@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Universitas Muhammadiyah Malang (UMM)</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/creative.css">
+	<link rel="stylesheet" href="css/book.css"/>
+	<style>
+	hr {max-width: 100%;}
+	body{background-image: linear-gradient(-225deg, #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%);}
+	.img-fluid{max-width:100%;margin:0 auto}
+	.service-box {background: #fff;box-shadow: inset 0px 0px 7px #ccc;border-radius: 10px;max-width: 100%;padding: 30px;margin: 0 auto;}
+	.service-box:hover {background-image: linear-gradient(to top, lightgrey 0%, lightgrey 1%, #e0e0e0 26%, #efefef 48%, #d9d9d9 75%, #bcbcbc 100%);}
+	section {padding: 10px 0;}
+	.lightbox-html .wowbook-controls {
+	background: url('img/wood.jpg');}
+	</style>
+</head>
+<body id="page-top">
+<section id="services">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center">
+			<img src="img/umm.png" class="img-fluid"/>
+				<hr class="light">
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div id='book1-trigger' class="bookGo col-lg-6 col-md-6 text-center">
+				<div class="service-box">
+					<img class='book-thumb' src='pdf/book1.jpg' />
+					<h3>Rubrik Pengelompokkan<br>Berdasarkan Multiple Intellegences</h3>
+					<p class="text-muted">
+					Idenfikasi/pemetan kecerdasan Majemuk<br>
+					( <i>*Dipergunakan untuk Kalangan Sendiri</i> )
+					</p>					
+				</div>
+			</div>
+			<div id='book2-trigger' class="bookGo col-lg-6 col-md-6 text-center">
+				<div class="service-box">
+					<img class='book-thumb' src='pdf/book2.jpg' />
+					<h3>LKPD Berbasis Bahasa Dan Budaya</h3>
+					<p class="text-muted">
+						Keunikan Daerah Tempat Tinggalku<br/>
+						Pembelajaran 1 sampai 3 <br>
+						Untuk Kelas IV Sekolah Dasar dan Madrasah Ibtidaiyah
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<div style='display: none'>
+	<div id='book1'></div>
+	<div id='book2'></div>
+</div>
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.easing.min.js"></script>
+<script src="js/jquery.fittext.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/creative.js"></script>
+<script src="js/pdf.combined.min.js"></script>
+<script src="js/book.min.js"></script>
+<script >
+$(function() {
+    var optionsBook1 = {
+        //height: 1024,
+        //width: 725 * 2,
+        pageNumbers: false,
+        pdf: "pdf/book1.pdf",
+        pdfFind: true,
+        pdfTextSelectable: true,
+		lightbox: "#book1-trigger",
+        lightboxClass: "lightbox-images1",
+        centeredWhenClosed: true,
+        hardcovers: true,
+        curl: false,
+        toolbar: "lastLeft, left, currentPage, right, lastRight, find, toc, zoomin, zoomout, download, flipsound, fullscreen, thumbnails",
+		toolbarPosition: 'top',
+        thumbnailsPosition: 'bottom',
+		thumbnailScale: 0.1,
+        responsiveHandleWidth: 50
+    };
+    var optionsBook2 = {
+        height: 1024,
+        width: 725 * 2,
+        pageNumbers: false,
+        pdf: "pdf/book2.pdf",
+        pdfFind: true,
+        pdfTextSelectable: true,
+        centeredWhenClosed: true,
+        hardcovers: true,
+        curl: false,
+		lightbox: "#book2-trigger",
+		//lightboxClass: "lightbox-html",
+		lightboxBackground: "url(img/wood.jpg)",
+		style: "wowbook-cs-white",
+        toolbar: "lastLeft, left, currentPage, right, lastRight, find, toc, zoomin, zoomout, download, flipsound, fullscreen, thumbnails",
+		toolbarPosition: 'top',
+        thumbnailsPosition: 'bottom',
+		thumbnailScale: 0.1,
+        responsiveHandleWidth: 50
+    };
+    var books = {
+        "#book1": optionsBook1,
+        "#book2": optionsBook2
+    };
+    $(".bookGo").on("click", function(){
+		buildBook("#" + this.id.replace("-trigger", ""));
+	})
+    function buildBook(elem) {
+        var book = $.wowBook(elem);
+        if (!book) {
+            $(elem).wowBook(books[elem]);
+            book = $.wowBook(elem);
+        }
+        book.showLightbox();
+    }
+});       
+</script>
+</body>
+</html>
